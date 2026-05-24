@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="AI-oplæser" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>AI-oplæser WebApp</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">WebApp til iPhone og iPad</p>
+      <h1>AI-oplæser</h1>
+      <p>
+        Skriv eller indsæt en tekst. Appen kan læse teksten op én linje ad gangen.
+        Når du trykker Enter efter en linje, læser appen automatisk den linje op.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>1. Skriv tekst</h2>
+      <p class="help-text">
+        Stavehjælp er slået til i tekstfeltet. iPhone/iPad kan derfor markere
+        stavefejl og foreslå rettelser. Knappen nedenunder kan også finde nogle
+        typiske fejl uden brug af AI.
+      </p>
+
+      <label for="textInput" class="label">Tekst til oplæsning</label>
+      <textarea
+        id="textInput"
+        spellcheck="true"
+        lang="da"
+        autocapitalize="sentences"
+        autocomplete="on"
+        autocorrect="on"
+        placeholder="Skriv din tekst her...&#10;Tryk Enter efter en linje.&#10;Appen læser automatisk linjen op."
+      ></textarea>
+
+      <div class="button-row">
+        <button id="checkSpellingButton" type="button" class="secondary">Find staveforslag</button>
+        <button id="applySpellingButton" type="button" class="secondary">Ret kendte fejl</button>
+      </div>
+
+      <div id="spellingBox" class="spelling-box" aria-live="polite">
+        <strong>Stavehjælp:</strong>
+        <p>Tryk på “Find staveforslag” for at se forslag.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Vælg stemme</h2>
+      <p class="help-text">
+        Stemmerne kommer fra iPhone/iPad eller browseren. Hvis der ikke findes
+        en tydelig dansk mande- eller kvindestemme, vælger appen den bedste
+        danske stemme, den kan finde.
+      </p>
+
+      <div class="voice-grid">
+        <label class="voice-option">
+          <input type="radio" name="voiceType" value="female" checked />
+          <span>Kvindelig stemme</span>
+        </label>
+        <label class="voice-option">
+          <input type="radio" name="voiceType" value="male" />
+          <span>Mandlig stemme</span>
+        </label>
+      </div>
+
+      <label for="rateInput" class="label">Hastighed</label>
+      <input id="rateInput" type="range" min="0.6" max="1.3" value="0.95" step="0.05" />
+      <p id="rateText" class="small-text">Hastighed: 0.95</p>
+    </section>
+
+    <section class="card">
+      <h2>3. Læs op</h2>
+      <p class="help-text">
+        Tryk Enter efter en linje for automatisk oplæsning. Du kan også trykke
+        “Læs op” for at læse hele teksten linje for linje.
+      </p>
+
+      <div class="button-row">
+        <button id="readButton" type="button">Læs op</button>
+        <button id="pauseButton" type="button" class="secondary">Pause / fortsæt</button>
+        <button id="stopButton" type="button" class="danger">Stop</button>
+      </div>
+
+      <div class="now-reading">
+        <strong>Læser nu:</strong>
+        <p id="currentLine">Ingen oplæsning i gang.</p>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h2>Sådan installeres den på iPhone/iPad</h2>
+      <p>
+        Når appen ligger på GitHub Pages, åbner du linket i Safari. Tryk på
+        Del-knappen og vælg <strong>Føj til hjemmeskærm</strong>. Derefter får
+        appen sit eget ikon.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

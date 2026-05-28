@@ -19,6 +19,8 @@
       <p>
         Skriv eller indsæt en tekst. Appen kan læse teksten op én linje ad gangen.
         Når du trykker Enter efter en linje, læser appen automatisk den linje op.
+        Den kan også læse almindelige regnetegn som plus, minus, gange,
+        divideret med og er lig med.
       </p>
     </section>
 
@@ -38,7 +40,7 @@
         autocapitalize="sentences"
         autocomplete="on"
         autocorrect="on"
-        placeholder="Skriv din tekst her...&#10;Tryk Enter efter en linje.&#10;Appen læser automatisk linjen op."
+        placeholder="Skriv din tekst her...&#10;Eksempel: 3 + 4 = 7&#10;Tryk Enter efter en linje. Appen læser automatisk linjen op."
       ></textarea>
 
       <div class="button-row">
@@ -80,7 +82,8 @@
       <h2>3. Læs op</h2>
       <p class="help-text">
         Tryk Enter efter en linje for automatisk oplæsning. Du kan også trykke
-        “Læs op” for at læse hele teksten linje for linje.
+        “Læs op” for at læse hele teksten linje for linje. Regnetegn læses
+        som ord, fx “3 + 4 = 7” læses som “3 plus 4 er lig med 7”.
       </p>
 
       <div class="button-row">
@@ -93,6 +96,18 @@
         <strong>Læser nu:</strong>
         <p id="currentLine">Ingen oplæsning i gang.</p>
       </div>
+    </section>
+
+
+    <section class="card info-card">
+      <h2>Matematik</h2>
+      <p>
+        Appen omskriver almindelige regnetegn før oplæsning. Den læser fx
+        <strong>+</strong> som “plus”, <strong>-</strong> som “minus”,
+        <strong>×</strong> eller <strong>*</strong> som “gange”,
+        <strong>/</strong> eller <strong>÷</strong> som “divideret med” og
+        <strong>=</strong> som “er lig med”.
+      </p>
     </section>
 
     <section class="card info-card">

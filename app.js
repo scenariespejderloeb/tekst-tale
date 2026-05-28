@@ -75,6 +75,52 @@ function getSelectedVoice() {
   return preferredVoice || danishVoices[0] || voices[0] || null;
 }
 
+
+// Matematikoplæsning uden AI.
+// Her omskrives almindelige regnetegn til ord, så tale-stemmen læser dem naturligt.
+function prepareMathForSpeech(text) {
+  let prepared = text;
+
+  const replacements = [
+    [/\+/g, " plus "],
+    [/−/g, " minus "],
+    [/–/g, " minus "],
+    [/—/g, " minus "],
+    [/\s-\s/g, " minus "],
+    [/×/g, " gange "],
+    [/\*/g, " gange "],
+    [/·/g, " gange "],
+    [/÷/g, " divideret med "],
+    [/\//g, " divideret med "],
+    [/=/g, " er lig med "],
+    [/≠/g, " er ikke lig med "],
+    [/</g, " er mindre end "],
+    [/>/g, " er større end "],
+    [/≤/g, " er mindre end eller lig med "],
+    [/≥/g, " er større end eller lig med "],
+    [/%/g, " procent "],
+    [/π/g, " pi "],
+    [/√/g, " kvadratroden af "],
+    [/\^2\b/g, " i anden "],
+    [/\^3\b/g, " i tredje "],
+    [/\^([0-9]+)/g, " opløftet i $1"],
+    [/\(/g, " parentes start "],
+    [/\)/g, " parentes slut "],
+    [/\[/g, " kantet parentes start "],
+    [/\]/g, " kantet parentes slut "]
+  ];
+
+  for (const [pattern, replacement] of replacements) {
+    prepared = prepared.replace(pattern, replacement);
+  }
+
+  // Læs decimaltal med komma eller punktum mere tydeligt: 3,5 → 3 komma 5
+  prepared = prepared.replace(/(\d)[,.](\d)/g, "$1 komma $2");
+
+  // Ryd op i ekstra mellemrum.
+  return prepared.replace(/\s+/g, " ").trim();
+}
+
 function getCleanLines() {
   return textInput.value
     .split(/\n+/)
@@ -93,7 +139,7 @@ function speakSingleLine(line) {
   window.speechSynthesis.cancel();
   currentLine.textContent = cleanLine;
 
-  const utterance = new SpeechSynthesisUtterance(cleanLine);
+  const utterance = new SpeechSynthesisUtterance(prepareMathForSpeech(cleanLine));
   utterance.lang = "da-DK";
   utterance.rate = Number(rateInput.value);
 
@@ -124,7 +170,7 @@ function speakCurrentLine() {
   const line = linesToRead[lineIndex];
   currentLine.textContent = line;
 
-  const utterance = new SpeechSynthesisUtterance(line);
+  const utterance = new SpeechSynthesisUtterance(prepareMathForSpeech(line));
   utterance.lang = "da-DK";
   utterance.rate = Number(rateInput.value);
 

@@ -41,3 +41,8 @@ Udvid listen dér, hvis der skal være samme ordliste som i version 0.5.
 ## Ny funktion
 
 Når brugeren trykker Enter i tekstfeltet, læser appen automatisk den linje op, der netop er skrevet. Shift+Enter laver linjeskift uden automatisk oplæsning.
+
+
+## Matematikoplæsning
+
+Denne version omskriver almindelige regnetegn før oplæsning, fx `+` til “plus”, `-` til “minus”, `×` eller `*` til “gange”, `/` eller `÷` til “divideret med” og `=` til “er lig med”.
